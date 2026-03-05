@@ -4,4 +4,4 @@ app = FastAPI()
 
 @app.get("/")
 def home():
-    return {"status": "ENA AI Server running"}
+    return {"message": "ENA AI Reports API running"}
