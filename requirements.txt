@@ -1,3 +1,5 @@
 fastapi
 uvicorn
-spacy
+python-multipart
+supabase
+httpx
