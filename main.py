@@ -124,16 +124,3 @@ def get_stats():
         "moyenne_generale": round(moyenne, 2),
         "analyses_terminees": len(notes)
     }
-```
-
----
-
-## 📋 Mettre à jour requirements.txt
-
-Remplace aussi le contenu de `requirements.txt` par :
-```
-fastapi
-uvicorn
-python-multipart
-supabase
-httpx
