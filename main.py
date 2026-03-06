@@ -135,6 +135,7 @@ async def upload_rapport(
         supabase.table("rapports").update({"statut": "analyse_terminee"}).eq("id", rapport_id).execute()
 
     except Exception as e:
+        print(f"ERREUR AGENTS: {str(e)}")
         supabase.table("rapports").update({"statut": "en_attente"}).eq("id", rapport_id).execute()
 
     return {
