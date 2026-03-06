@@ -1,6 +1,7 @@
 import os
 import uuid
 import json
+import asyncio
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from supabase import create_client, Client
@@ -101,15 +102,21 @@ async def upload_rapport(
             prompt_user + ". Donne une note sur 20 pour la structure."
         )
 
+        await asyncio.sleep(3)
+
         agent2 = await appeler_groq(
             "Tu es un expert en linguistique. Évalue la qualité rédactionnelle (clarté, vocabulaire, syntaxe). Réponds UNIQUEMENT en JSON valide: {\"score\": X, \"commentaire\": \"...\"}",
             prompt_user + ". Donne une note sur 20 pour la rédaction."
         )
 
+        await asyncio.sleep(3)
+
         agent3 = await appeler_groq(
             "Tu es un expert en compétences professionnelles. Évalue les compétences démontrées dans ce rapport. Réponds UNIQUEMENT en JSON valide: {\"score\": X, \"commentaire\": \"...\"}",
             prompt_user + ". Donne une note sur 20 pour les compétences."
         )
+
+        await asyncio.sleep(3)
 
         agent4 = await appeler_groq(
             "Tu es un conseiller académique. Génère des recommandations personnalisées pour améliorer ce rapport. Réponds UNIQUEMENT en JSON valide: {\"recommandations\": \"...\"}",
@@ -135,7 +142,6 @@ async def upload_rapport(
         supabase.table("rapports").update({"statut": "analyse_terminee"}).eq("id", rapport_id).execute()
 
     except Exception as e:
-        print(f"ERREUR AGENTS: {str(e)}")
         supabase.table("rapports").update({"statut": "en_attente"}).eq("id", rapport_id).execute()
 
     return {
