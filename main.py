@@ -102,21 +102,21 @@ async def upload_rapport(
             prompt_user + ". Donne une note sur 20 pour la structure."
         )
 
-        await asyncio.sleep(3)
+        await asyncio.sleep(10)
 
         agent2 = await appeler_groq(
             "Tu es un expert en linguistique. Évalue la qualité rédactionnelle (clarté, vocabulaire, syntaxe). Réponds UNIQUEMENT en JSON valide: {\"score\": X, \"commentaire\": \"...\"}",
             prompt_user + ". Donne une note sur 20 pour la rédaction."
         )
 
-        await asyncio.sleep(3)
+        await asyncio.sleep(10)
 
         agent3 = await appeler_groq(
             "Tu es un expert en compétences professionnelles. Évalue les compétences démontrées dans ce rapport. Réponds UNIQUEMENT en JSON valide: {\"score\": X, \"commentaire\": \"...\"}",
             prompt_user + ". Donne une note sur 20 pour les compétences."
         )
 
-        await asyncio.sleep(3)
+        await asyncio.sleep(10)
 
         agent4 = await appeler_groq(
             "Tu es un conseiller académique. Génère des recommandations personnalisées pour améliorer ce rapport. Réponds UNIQUEMENT en JSON valide: {\"recommandations\": \"...\"}",
