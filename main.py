@@ -113,4 +113,3 @@ def get_stats():
         "moyenne_generale": round(moyenne, 2),
         "analyses_terminees": len(notes)
     }
-PyMuPDF
